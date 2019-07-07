@@ -1,0 +1,8 @@
+.tags {
+  margin: var(--margin-large);
+  text-align: center;
+}
+
+.tag {
+  margin: var(--margin-small);
+}

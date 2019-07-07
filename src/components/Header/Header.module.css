@@ -1,0 +1,36 @@
+.header {
+  background-color: var(--color-white);
+}
+
+.nav {
+  display: flex;
+  height: var(--height-header);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-items {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  font-weight: 500;
+  list-style-type: none;
+}
+
+.nav-item {
+  margin: 0 var(--margin-medium);
+}
+
+.nav-link {
+  font-size: var(--font-size-small);
+  padding: 0 var(--padding-small);
+}
+
+.activeNavLink,
+.activeNavLink:visited {
+  color: var(--color-primary);
+}
+
+.button {
+  margin-right: var(--padding-large);
+}

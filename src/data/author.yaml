@@ -1,0 +1,39 @@
+- name: DARIAH Campus
+  slug: dariah
+  title: Editor
+  description:
+  avatar: ../images/dariah-flower.png
+  email:
+  twitter:
+
+- name: Deborah Thorpe
+  slug: debs
+  title: Training & Education Officer
+  description:
+  avatar: ../images/authors/debs.jpg
+  email:
+  twitter:
+
+- name: Erzsébet Tóth-Czifra
+  slug: erzsebet
+  title: Open Science Officer
+  description:
+  avatar: ../images/authors/erzsebet.jpg
+  email:
+  twitter:
+
+- name: Marco Raciti
+  slug: marco
+  title: European Project Manager
+  description:
+  avatar: ../images/authors/marco.jpg
+  email:
+  twitter:
+
+- name: Toma Tasovac
+  slug: toma
+  title: DARIAH Director
+  description:
+  avatar: ../images/authors/toma.jpg
+  email:
+  twitter:

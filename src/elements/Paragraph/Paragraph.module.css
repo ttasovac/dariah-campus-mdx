@@ -1,0 +1,4 @@
+.paragraph {
+  line-height: var(--line-height-large);
+  margin: var(--margin-large) 0;
+}

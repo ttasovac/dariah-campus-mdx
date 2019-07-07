@@ -1,0 +1,36 @@
+.section {
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: var(--margin-huge) 0;
+}
+
+@media (max-width: 60rem) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 20rem);
+    grid-gap: var(--margin-medium);
+  }
+}
+
+.author {
+  display: flex;
+  flex-basis: 20rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+.author-avatar {
+  border-radius: var(--border-round);
+  margin: var(--margin-medium) auto;
+}
+
+.author-name {
+}
+
+.author-title {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}

@@ -1,0 +1,8 @@
+.page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--padding-large);
+  position: relative;
+  width: 100%;
+}

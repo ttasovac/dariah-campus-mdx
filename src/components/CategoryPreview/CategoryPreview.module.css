@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex: 1;
+  /* height: 100%; */
+}
+
+.image-container {
+  display: flex;
+  flex: 1;
+}
+
+.image {
+  border-radius: var(--border-rounded-medium) 0 0 var(--border-rounded-medium);
+  flex: 1;
+  /* height: 100%; */
+}

@@ -1,0 +1,28 @@
+.grid {
+  display: grid;
+  grid-gap: var(--margin-medium);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--grid-column-width-medium), 1fr)
+  );
+}
+
+.grid-small {
+  composes: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--grid-column-width-small), 1fr)
+  );
+}
+
+.grid-medium {
+  composes: grid;
+}
+
+.grid-large {
+  composes: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--grid-column-width-large), 1fr)
+  );
+}

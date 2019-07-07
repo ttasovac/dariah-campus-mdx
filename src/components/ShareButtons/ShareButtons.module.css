@@ -1,0 +1,9 @@
+.container {
+  color: var(--color-muted);
+  font-size: var(--font-size-heading1);
+  text-align: center;
+}
+
+.container > * {
+  margin: var(--margin-medium);
+}

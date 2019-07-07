@@ -1,0 +1,18 @@
+.hero {
+  margin: var(--margin-large) auto;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: var(--font-size-hero);
+}
+
+.hero-subtitle {
+  color: var(--color-muted);
+  font-size: var(--font-size-heading1);
+  font-weight: 400;
+}
+
+.hero-image {
+  width: 25rem;
+}

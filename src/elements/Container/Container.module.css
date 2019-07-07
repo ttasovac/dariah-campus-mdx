@@ -1,0 +1,20 @@
+.container {
+  margin: 0 auto;
+  max-width: var(--container-large);
+  width: 100%;
+}
+
+.container-small {
+  composes: container;
+  max-width: var(--container-small);
+}
+
+.container-medium {
+  composes: container;
+  max-width: var(--container-medium);
+}
+
+.container-large {
+  composes: container;
+  max-width: var(--container-large);
+}

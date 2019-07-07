@@ -1,0 +1,20 @@
+.search-bar {
+  margin: var(--margin-huge);
+  padding: 0 var(--padding-huge);
+}
+
+.search-bar-label {
+  display: block;
+  padding: 0 var(--padding-huge);
+}
+
+.search-bar-input {
+  background: none;
+  border: 1px solid var(--color-light-grey);
+  border-radius: calc(var(--padding-huge) * 2);
+  box-shadow: var(--boxshadow-large);
+  font-size: var(--font-size-heading1);
+  line-height: 1;
+  padding: var(--padding-huge);
+  width: 100%;
+}
