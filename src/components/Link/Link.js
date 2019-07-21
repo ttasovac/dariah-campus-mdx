@@ -15,14 +15,22 @@ import styles from './Link.module.css'
 // }
 const isAbsoluteUrl = url => url.startsWith('http')
 
-const Link = ({ activeClassName, children, className, href, to, ...rest }) => {
+const Link = ({
+  activeClassName,
+  children,
+  className,
+  href,
+  rel,
+  to,
+  ...rest
+}) => {
   if (isAbsoluteUrl(to || href)) {
     return (
       <a
         className={clsx(styles.link, className)}
         href={to || href}
         target="_blank"
-        rel="noopener noreferrer"
+        rel={['noopener', 'noreferrer', rel].filter(Boolean).join(' ')}
         {...rest}
       >
         {children}
@@ -34,6 +42,7 @@ const Link = ({ activeClassName, children, className, href, to, ...rest }) => {
     <RelativeLink
       activeClassName={clsx(styles.activeLink, activeClassName)}
       className={clsx(styles.link, className)}
+      rel={rel}
       to={to || href}
       {...rest}
     >
