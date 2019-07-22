@@ -262,9 +262,11 @@ exports.createPages = async ({ actions, graphql }) => {
       path: createPath(postsBasePath, frontmatter.slug),
       component: path.resolve('./src/templates/post.js'),
       context: {
-        categories: frontmatter.categories.map(category => category.slug),
+        categories: frontmatter.categories
+          ? frontmatter.categories.map(category => category.slug)
+          : [],
         id,
-        tags: frontmatter.tags.map(tag => tag.slug),
+        tags: frontmatter.tags ? frontmatter.tags.map(tag => tag.slug) : [],
       },
     })
   })
