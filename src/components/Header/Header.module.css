@@ -1,5 +1,6 @@
 .header {
   background-color: var(--color-white);
+  overflow-x: hidden;
 }
 
 .nav {

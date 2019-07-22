@@ -1,6 +1,7 @@
 .footer {
   color: var(--color-muted);
   background-color: var(--color-primary-dark);
+  overflow-x: hidden;
   padding: var(--padding-huge) 0 var(--padding-large) 0;
 }
 
