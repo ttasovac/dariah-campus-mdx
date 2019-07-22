@@ -23,6 +23,7 @@ const components = {
   ol: props => <List ordered {...props} />,
   p: Paragraph,
   ul: props => <List {...props} />,
+  // wrapper: props => props.children,
 }
 
 export default components

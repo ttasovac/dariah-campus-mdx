@@ -17,12 +17,12 @@ const pick = (posts, n) => {
     return posts
   }
 
-  const picked = []
+  const picked = new Set()
   while (picked.length < n - 1) {
-    picked.push(posts[Math.floor(Math.random() * posts.length)])
+    picked.add(posts[Math.floor(Math.random() * posts.length)])
   }
 
-  return picked
+  return Array.from(picked)
 }
 
 const RelatedPosts = ({ byCategory, byTag, className }) => {

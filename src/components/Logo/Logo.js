@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import Image from 'gatsby-image'
+
+import Image from 'components/Image/Image'
 
 const Logo = ({ critical, text }) => {
   const { logo, logoWithText, logoWithTextCritical } = useStaticQuery(graphql`

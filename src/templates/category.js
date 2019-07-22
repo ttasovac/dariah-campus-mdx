@@ -40,6 +40,7 @@ export const query = graphql`
     posts: allMdx(
       limit: $limit
       filter: {
+        fileInfo: { sourceInstanceName: { eq: "posts" } }
         frontmatter: { categories: { elemMatch: { slug: { eq: $slug } } } }
       }
       skip: $skip

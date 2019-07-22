@@ -9,20 +9,23 @@ const Youtube = ({ id, url, relatedVideos = false }) => {
   if (id) {
     embedUrl = new URL(`https://youtube.com/embed/${id}`)
   } else if (url) {
-    embedUrl = new URL()
     const providedUrl = new URL(url)
+    const searchParams = new URLSearchParams()
+    let path
     providedUrl.searchParams.forEach((value, key) => {
       switch (key) {
         case 'v':
-          embedUrl.path = `https://youtube.com/embed/${value}`
+          path = `https://youtube.com/embed/${value}`
           break
         case 't:':
-          embedUrl.searchParams.set('start', toSeconds(value))
+          searchParams.set('start', toSeconds(value))
           break
         default:
-          embedUrl.searchParams.set(key, value)
+          searchParams.set(key, value)
       }
     })
+    embedUrl = new URL(path)
+    embedUrl.search = searchParams
   } else {
     throw new Error('Please provide either a video `id` or a full `url`.')
   }

@@ -1,11 +1,12 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
 export const getBasePath = path => {
-  const data = useStaticQuery(graphql`
+  const { site } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
           paths {
+            displayName
             name
             path
           }
@@ -14,7 +15,7 @@ export const getBasePath = path => {
     }
   `)
 
-  const route = data.site.siteMetadata.paths.find(route => route.name === path)
+  const route = site.siteMetadata.paths.find(route => route.name === path)
 
   if (!route) {
     throw new Error(`No route path found for ${path}.`)

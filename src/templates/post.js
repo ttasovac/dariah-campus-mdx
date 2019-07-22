@@ -27,11 +27,7 @@ const postComponents = {
 
 const PostTemplate = ({ data }) => (
   <Page>
-    <Head
-      lang={data.post.frontmatter.lang}
-      title={data.post.frontmatter.title}
-      type="article"
-    />
+    <Head article={data.post.frontmatter} type="article" />
     <Container size="small">
       <Title>{data.post.frontmatter.title}</Title>
       <PostMetadata metadata={data.post.frontmatter} />
@@ -60,6 +56,7 @@ export const query = graphql`
       frontmatter {
         authors {
           name
+          slug
           avatar {
             image: childImageSharp {
               fixed(width: 36, height: 36) {
@@ -91,6 +88,7 @@ export const query = graphql`
     postsRelatedByCategory: allMdx(
       filter: {
         id: { ne: $id }
+        fileInfo: { sourceInstanceName: { eq: "posts" } }
         frontmatter: {
           categories: { elemMatch: { slug: { in: $categories } } }
         }
@@ -108,6 +106,7 @@ export const query = graphql`
     postsRelatedByTag: allMdx(
       filter: {
         id: { ne: $id }
+        fileInfo: { sourceInstanceName: { eq: "posts" } }
         frontmatter: { tags: { elemMatch: { slug: { in: $tags } } } }
       }
       limit: 5

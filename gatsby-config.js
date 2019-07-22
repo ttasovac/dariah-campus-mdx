@@ -11,44 +11,90 @@ module.exports = {
     description:
       'DARIAH Campus is a pilot project exploring different ways of capturing ' +
       'and consolidating DARIAH learning resources.',
-    keywords: [],
+    email: 'https://www.dariah.eu/helpdesk/',
+    keywords: ['Digital Humanities'],
     lang: 'en',
     paths: [
       {
+        displayName: 'About',
+        name: 'about',
+        path: '/about',
+        top: true,
+      },
+      {
+        displayName: 'Author',
         name: 'author',
         path: '/author',
+        top: false,
       },
       {
+        displayName: 'Authors',
         name: 'authors',
         path: '/authors',
+        top: true,
       },
       {
+        displayName: 'Category',
         name: 'category',
         path: '/source',
+        top: false,
       },
       {
+        displayName: 'Categories',
         name: 'categories',
         path: '/sources',
+        top: true,
       },
       {
+        displayName: 'Contact',
+        name: 'contact',
+        path: '/contact',
+        top: true,
+      },
+      {
+        displayName: 'Course Registry',
+        name: 'course-registry',
+        path: '/course-registry',
+        top: true,
+      },
+      {
+        displayName: 'Home',
+        name: 'home',
+        path: '/',
+        top: true,
+      },
+      {
+        displayName: 'Resource',
         name: 'post',
         path: '/resource',
+        top: false,
       },
       {
+        displayName: 'Resources',
         name: 'posts',
         path: '/resources',
+        top: true,
       },
       {
+        displayName: 'Tag',
         name: 'tag',
         path: '/tag',
+        top: false,
       },
       {
+        displayName: 'Tags',
         name: 'tags',
         path: '/tags',
+        top: true,
       },
     ],
+    publishedAt: '2019-08-30',
     siteUrl,
     siteVerification: [
+      // {
+      //   name: 'facebook',
+      //   key: 'fbAppId',
+      // },
       {
         name: 'google',
         key: '',
@@ -83,6 +129,7 @@ module.exports = {
       },
     ],
     title: 'DARIAH Campus',
+    url: 'https://www.dariah.eu',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -112,7 +159,9 @@ module.exports = {
       options: {
         extensions: ['.mdx', '.md'],
         defaultLayouts: {
+          data: path.resolve('./src/templates/component.js'),
           default: path.resolve('./src/templates/page.js'),
+          // pages: '',
           // posts: '',
         },
         gatsbyRemarkPlugins: [
@@ -149,6 +198,12 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-svgr',
+    // {
+    //   resolve: 'gatsby-plugin-postcss',
+    //   options: {
+    //     postCssPlugins: [require('postcss-custom-properties')],
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -171,6 +226,7 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // 'gatsby-plugin-offline',
+    // 'gatsby-plugin-polyfill-io',
     'gatsby-plugin-netlify',
     // 'gatsby-plugin-netlify-cache',
     // 'gatsby-plugin-netlify-cms',

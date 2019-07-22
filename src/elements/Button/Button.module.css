@@ -16,8 +16,8 @@
   color: var(--color-white);
 }
 
-.button-primary {
-  composes: button;
+.button-primary,
+.button-primary:visited {
   color: var(--color-white);
   background-color: var(--color-primary);
 }

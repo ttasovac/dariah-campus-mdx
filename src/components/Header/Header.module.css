@@ -34,3 +34,78 @@
 .button {
   margin-right: var(--padding-large);
 }
+
+.mobile-nav {
+  display: none;
+  justify-content: space-between;
+}
+
+.mobile-nav-bar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobile-nav-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.2s ease;
+  width: 100vw;
+  z-index: 1;
+}
+
+.mobile-nav-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: var(--margin-large);
+}
+
+.mobile-nav-panel {
+  background: var(--color-white);
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  width: 30rem;
+}
+
+.mobile-nav-close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  float: right;
+  font-size: var(--font-size-title);
+  margin: var(--margin-medium) var(--margin-large);
+}
+
+.mobile-nav-items {
+  list-style-type: none;
+  margin: var(--margin-huge) 0 var(--margin-medium);
+  padding: var(--padding-large) 0;
+}
+
+.mobile-nav-item {
+  padding: var(--padding-medium);
+}
+
+.mobile-nav-link {
+  font-size: var(--font-size-heading1);
+  padding: var(--padding-medium);
+}
+
+.mobile-active-nav-link,
+.mobile-active-nav-link:visited {
+  color: var(--color-primary);
+}
+
+@media (max-width: 60rem) {
+  .nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+  }
+}

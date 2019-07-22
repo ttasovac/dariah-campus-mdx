@@ -1,6 +1,6 @@
 import React from 'react'
-import Image from 'gatsby-image'
 
+import Image from 'components/Image/Image'
 import PostsCount from 'components/PostsCount/PostsCount'
 import ReadMoreLink from 'components/ReadMoreLink/ReadMoreLink'
 

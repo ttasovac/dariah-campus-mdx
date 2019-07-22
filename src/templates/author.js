@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-// import Image from 'gatsby-image'
 
 import Head from 'components/Head/Head'
+// import Image from 'components/Image/Image'
 import Pagination from 'components/Pagination/Pagination'
 import PostPreview from 'components/PostPreview/PostPreview'
 
@@ -44,6 +44,7 @@ export const query = graphql`
     posts: allMdx(
       limit: $limit
       filter: {
+        fileInfo: { sourceInstanceName: { eq: "posts" } }
         frontmatter: { authors: { elemMatch: { slug: { eq: $slug } } } }
       }
       skip: $skip

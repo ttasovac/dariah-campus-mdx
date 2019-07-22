@@ -1,6 +1,6 @@
 import React from 'react'
-import Image from 'gatsby-image'
 
+import Image from 'components/Image/Image'
 import Link from 'components/Link/Link'
 
 import Card from 'elements/Card/Card'
@@ -13,7 +13,7 @@ import { getBasePath } from 'utils/get-base-path'
 
 import styles from './PostPreview.module.css'
 
-const PostPreview = ({ excerpt, frontmatter }) => {
+const PostPreview = ({ excerpt, frontmatter, next, previous }) => {
   const path = createPath(getBasePath('post'), frontmatter.slug)
 
   return (

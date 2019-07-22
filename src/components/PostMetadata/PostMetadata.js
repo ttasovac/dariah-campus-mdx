@@ -1,11 +1,23 @@
 import React from 'react'
-import Image from 'gatsby-image'
 import clsx from 'clsx'
+
+import Image from 'components/Image/Image'
+import Link from 'components/Link/Link'
+
+import { createPath } from 'utils/create-path'
+import { getBasePath } from 'utils/get-base-path'
 
 import styles from './PostMetadata.module.css'
 
-const getNames = (entities = []) =>
-  entities.map(entity => entity.name).join(', ')
+const getNames = (entities = [], basePath) =>
+  entities.map((entity, i) => (
+    <>
+      {i ? ', ' : null}
+      <Link key={entity.slug} to={createPath(basePath, entity.slug)}>
+        {entity.name}
+      </Link>
+    </>
+  ))
 
 const PostMetadata = ({ className, metadata }) => (
   <div className={clsx(styles.metadata, className)}>
@@ -23,13 +35,17 @@ const PostMetadata = ({ className, metadata }) => (
           )}
       </div>
       <div>
-        <div>Written by {getNames(metadata.authors)}</div>
+        <div>
+          Written by {getNames(metadata.authors, getBasePath('authors'))}
+        </div>
         <time>{metadata.date}</time>
       </div>
     </div>
     <div className={styles.metadataRight}>
-      <div>Source: {getNames(metadata.categories)}</div>
-      <div>Topics: {getNames(metadata.tags)}</div>
+      <div>
+        Source: {getNames(metadata.categories, getBasePath('categories'))}
+      </div>
+      <div>Topics: {getNames(metadata.tags, getBasePath('tags'))}</div>
     </div>
   </div>
 )

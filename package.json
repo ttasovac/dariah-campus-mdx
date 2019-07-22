@@ -7,8 +7,6 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",
-    "@reach/combobox": "^0.1.1",
-    "@reach/dialog": "^0.2.9",
     "@svgr/webpack": "^4.3.1",
     "clsx": "^1.0.4",
     "gatsby": "^2.13.6",
@@ -24,14 +22,15 @@
     "gatsby-source-filesystem": "^2.1.2",
     "gatsby-transformer-sharp": "^2.2.1",
     "gatsby-transformer-yaml": "^2.2.0",
+    "intersection-observer": "^0.7.0",
     "lodash.truncate": "^4.4.2",
+    "object-fit-images": "^3.2.4",
     "prism-react-renderer": "^0.1.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.7.0",
-    "react-loader-spinner": "^2.3.0",
     "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {
@@ -46,7 +45,7 @@
     "clean": "gatsby clean",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
+    "start": "yarn develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },

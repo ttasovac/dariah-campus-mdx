@@ -52,8 +52,10 @@ exports.createSchemaCustomization = ({ actions }) => {
           //   source,
           //   node => node.internal && node.internal.type === 'File'
           // )
-          return parent
+          return parentFileNode
             ? {
+                birthTime: parentFileNode.birthTime,
+                mtime: parentFileNode.mtime,
                 relativePath: parentFileNode.relativePath,
                 relativeDirectory: parentFileNode.relativeDirectory,
                 sourceInstanceName: parentFileNode.sourceInstanceName,
@@ -99,8 +101,10 @@ exports.createSchemaCustomization = ({ actions }) => {
 
   actions.createTypes(`
     type SiteRoute {
+      displayName: String
       name: String
       path: String
+      top: Boolean
     }
 
     type SiteSearchVerification {
@@ -117,19 +121,21 @@ exports.createSchemaCustomization = ({ actions }) => {
     type SiteMetadata {
       author: String
       description: String
+      email: String
       keywords: [String]
       lang: String
       paths: [SiteRoute]
+      publishedAt: Date
       siteUrl: String!
       siteVerification: [SiteSearchVerification]
       social: [SiteSocial]
       title: String
+      url: String
     }
 
     type Site implements Node @dontInfer {
-      # buildTime: Date
-      # host: String
-      # pathPrefix: String
+      buildTime: Date
+      pathPrefix: String
       siteMetadata: SiteMetadata
     }
 
@@ -171,11 +177,11 @@ exports.createSchemaCustomization = ({ actions }) => {
       abstract: String @truncate(characters: 140)
       authors: [Author!] @defaultValue(values: ["dariah"]) @link(by: "slug")
       categories: [Category!] @link(by: "slug")
-      date: Date! @dateformat(formatString: "MMM, DD YYYY")
+      date: Date @dateformat(formatString: "MMM, DD YYYY")
       # featuredImage: File @fileByRelativePath
-      isoDate: Date! @proxy(from: "date")
+      isoDate: Date @proxy(from: "date")
       lang: String
-      slug: String! @slug(from: "title")
+      slug: String @slug(from: "title")
       tags: [Tag!] @link(by: "slug")
       title: String!
       toc: Boolean
@@ -187,6 +193,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type FileInfo {
+      birthTime: Date
+      mtime: Date
       relativeDirectory: String!
       relativePath: String!
       sourceInstanceName: String!
@@ -198,6 +206,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const { data, errors } = await graphql(`
     query {
       posts: allMdx(
+        filter: { fileInfo: { sourceInstanceName: { eq: "posts" } } }
         sort: {
           fields: [frontmatter___isoDate, frontmatter___title]
           order: [DESC, ASC]

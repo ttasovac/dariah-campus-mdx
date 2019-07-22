@@ -1,7 +1,8 @@
 import React from 'react'
 // import { graphql, useStaticQuery } from 'gatsby'
-// import Image from 'gatsby-image'
 import clsx from 'clsx'
+
+// import Image from 'components/Image/Image'
 
 import Container from 'elements/Container/Container'
 

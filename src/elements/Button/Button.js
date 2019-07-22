@@ -11,7 +11,7 @@ const Button = ({
   ...rest
 }) => (
   <Component
-    className={clsx(primary ? styles.buttonPrimary : styles.button, className)}
+    className={clsx(styles.button, primary && styles.buttonPrimary, className)}
     {...rest}
   >
     {children}

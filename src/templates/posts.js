@@ -32,6 +32,7 @@ export default PostsTemplate
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
     posts: allMdx(
+      filter: { fileInfo: { sourceInstanceName: { eq: "posts" } } }
       limit: $limit
       skip: $skip
       sort: {
