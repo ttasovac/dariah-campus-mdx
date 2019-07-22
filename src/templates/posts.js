@@ -34,7 +34,10 @@ export const query = graphql`
     posts: allMdx(
       limit: $limit
       skip: $skip
-      sort: { fields: [frontmatter___isoDate], order: [DESC] }
+      sort: {
+        fields: [frontmatter___isoDate, frontmatter___title]
+        order: [DESC, ASC]
+      }
     ) {
       nodes {
         excerpt

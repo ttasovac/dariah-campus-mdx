@@ -197,7 +197,12 @@ exports.createSchemaCustomization = ({ actions }) => {
 exports.createPages = async ({ actions, graphql }) => {
   const { data, errors } = await graphql(`
     query {
-      posts: allMdx(sort: { fields: [frontmatter___isoDate], order: [DESC] }) {
+      posts: allMdx(
+        sort: {
+          fields: [frontmatter___isoDate, frontmatter___title]
+          order: [DESC, ASC]
+        }
+      ) {
         count: totalCount
         nodes {
           id

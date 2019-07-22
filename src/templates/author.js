@@ -47,7 +47,10 @@ export const query = graphql`
         frontmatter: { authors: { elemMatch: { slug: { eq: $slug } } } }
       }
       skip: $skip
-      sort: { fields: [frontmatter___isoDate], order: [DESC] }
+      sort: {
+        fields: [frontmatter___isoDate, frontmatter___title]
+        order: [DESC, ASC]
+      }
     ) {
       nodes {
         excerpt
