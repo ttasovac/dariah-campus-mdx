@@ -4,3 +4,7 @@
 
 .link:hover {
 }
+
+.post-link {
+  color: var(--color-primary);
+}

@@ -1,9 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXProvider } from '@mdx-js/react'
 
 import Head from 'components/Head/Head'
-import Link from 'components/Link/Link'
+import { PostLink } from 'components/Link/Link'
 import PostMetadata from 'components/PostMetadata/PostMetadata'
 // import PreviousNextPosts from 'components/PreviousNextPosts/PreviousNextPosts'
 import RelatedPosts from 'components/RelatedPosts/RelatedPosts'
@@ -20,7 +21,7 @@ import components from 'components'
 // FIXME: Decide heading levels in posts, i.e. do we need a subtitle (h2)
 const postComponents = {
   ...components,
-  a: props => <Link {...props} styl={{ color: 'red' }} />,
+  a: props => <PostLink {...props} />,
   h2: props => <Heading level="1" {...props} />,
 }
 
@@ -36,7 +37,9 @@ const PostTemplate = ({ data }) => (
       <PostMetadata metadata={data.post.frontmatter} />
       {data.post.frontmatter.toc && <TOC headings={data.post.headings} />}
       <article>
-        <MDXRenderer components={postComponents}>{data.post.body}</MDXRenderer>
+        <MDXProvider components={postComponents}>
+          <MDXRenderer>{data.post.body}</MDXRenderer>
+        </MDXProvider>
       </article>
       <ShareButtons metadata={data.post.frontmatter} />
       {/* <PreviousNextPosts /> */}

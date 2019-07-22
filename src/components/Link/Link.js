@@ -51,6 +51,9 @@ const Link = ({
   )
 }
 
+// Overwrites for posts
+export const PostLink = props => <Link {...props} className={styles.postLink} />
+
 Link.propTypes = {
   activeClassName: PropTypes.string,
   children: PropTypes.node,
