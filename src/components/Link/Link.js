@@ -25,6 +25,7 @@ const Link = ({
   ...rest
 }) => {
   if (isAbsoluteUrl(to || href)) {
+    /* eslint-disable react/jsx-no-target-blank */
     return (
       <a
         className={clsx(styles.link, className)}
