@@ -202,7 +202,13 @@ exports.createPages = async ({ actions, graphql }) => {
         nodes {
           id
           frontmatter {
+            categories {
+              slug
+            }
             slug
+            tags {
+              slug
+            }
           }
         }
         byAuthor: group(field: frontmatter___authors___slug) {
@@ -251,7 +257,9 @@ exports.createPages = async ({ actions, graphql }) => {
       path: createPath(postsBasePath, frontmatter.slug),
       component: path.resolve('./src/templates/post.js'),
       context: {
+        categories: frontmatter.categories.map(category => category.slug),
         id,
+        tags: frontmatter.tags.map(tag => tag.slug),
       },
     })
   })

@@ -43,7 +43,10 @@ const PostTemplate = ({ data }) => (
       </article>
       <ShareButtons metadata={data.post.frontmatter} />
       {/* <PreviousNextPosts /> */}
-      <RelatedPosts post={data.post} />
+      <RelatedPosts
+        byCategory={data.postsRelatedByCategory}
+        byTag={postsRelatedByTag}
+      />
     </Container>
   </Page>
 )
@@ -51,7 +54,7 @@ const PostTemplate = ({ data }) => (
 export default PostTemplate
 
 export const query = graphql`
-  query($id: String!) {
+  query($categories: [String!]!, $id: String!, tags: [String!]!) {
     post: mdx(id: { eq: $id }) {
       body
       frontmatter {
@@ -84,6 +87,36 @@ export const query = graphql`
         depth
       }
       id
+    }
+    postsRelatedByCategory: allMdx(
+      filter: {
+        id: { ne: $id }
+        frontmatter: { categories: { elemMatch: { slug: { in: $categories } } } }
+      }
+      limit: 5
+    ) {
+      nodes {
+        frontmatter {
+          slug
+          title
+        }
+        id
+      }
+    }
+    postsRelatedByTag: allMdx(
+      filter: {
+        id: { ne: $id }
+        frontmatter: { categories: { elemMatch: { slug: { in: $categories } } } }
+      }
+      limit: 5
+    ) {
+      nodes {
+        frontmatter {
+          slug
+          title
+        }
+        id
+      }
     }
   }
 `
