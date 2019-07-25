@@ -21,7 +21,7 @@ const NavLink = props => (
 )
 
 const Footer = ({ className }) => (
-  <header className={clsx(styles.footer, className)}>
+  <footer className={clsx(styles.footer, className)}>
     <Container>
       <nav className={styles.nav}>
         <ul className={styles.navItems}>
@@ -80,7 +80,7 @@ const Footer = ({ className }) => (
         </div>
       </div>
     </Container>
-  </header>
+  </footer>
 )
 
 export default Footer

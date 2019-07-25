@@ -15,6 +15,7 @@
   align-items: center;
   display: flex;
   flex: 1;
+  flex-wrap: wrap;
   font-weight: 500;
   justify-content: center;
   list-style-type: none;
