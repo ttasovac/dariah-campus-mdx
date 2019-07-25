@@ -1,4 +1,5 @@
 import React from 'react'
+import FocusLock from 'react-focus-lock'
 import clsx from 'clsx'
 
 import Link from 'components/Link/Link'
@@ -80,6 +81,7 @@ const Hamburger = () => (
 
 const MobileNav = () => {
   const [isVisible, setIsVisible] = React.useState(false)
+  const openButtonRef = React.createRef()
 
   const setOverlayVisible = () => {
     const documentWidth = document.documentElement.clientWidth
@@ -97,6 +99,12 @@ const MobileNav = () => {
   }
 
   React.useEffect(() => {
+    if (!isVisible && openButtonRef.current) {
+      openButtonRef.current.focus()
+    }
+  }, [isVisible])
+
+  React.useEffect(() => {
     return () => setOverlayInvisible()
   }, [])
 
@@ -104,6 +112,7 @@ const MobileNav = () => {
     <div className={styles.mobileNav}>
       <div className={styles.mobileNavBar}>
         <button
+          ref={openButtonRef}
           aria-label="Open menu"
           className={styles.mobileNavToggle}
           onClick={() => setOverlayVisible()}
@@ -113,74 +122,83 @@ const MobileNav = () => {
         <NavLink to="/">
           <Logo critical text />
         </NavLink>
-        <div />
+        <div className={styles.mobileNavSearch} />
       </div>
       <Portal>
-        <div
-          className={styles.mobileNavOverlay}
-          style={{
-            pointerEvents: isVisible ? 'all' : 'none',
-            opacity: isVisible ? 1 : 0,
-          }}
-          onClick={() => setOverlayInvisible()}
-        >
+        <FocusLock disabled={!isVisible}>
           <div
-            className={styles.mobileNavPanel}
+            className={styles.mobileNavOverlay}
             style={{
-              transform: isVisible ? undefined : 'translateX(-100%)',
+              pointerEvents: isVisible ? 'all' : 'none',
+              opacity: isVisible ? 1 : 0,
+            }}
+            onClick={() => setOverlayInvisible()}
+            onKeyDown={e => {
+              if (e.key === 'Escape') {
+                setOverlayInvisible()
+              }
             }}
           >
-            <button
-              aria-label="Close menu"
-              className={styles.mobileNavCloseButton}
-              onClick={() => setOverlayInvisible()}
+            <div
+              className={styles.mobileNavPanel}
+              style={{
+                transform: isVisible ? undefined : 'translateX(-100%)',
+              }}
             >
-              &times;
-            </button>
-            <nav>
-              <ul className={styles.mobileNavItems}>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to="/">Home</MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('posts')}>
-                    Resources
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('authors')}>
-                    Authors
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('tags')}>Topics</MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('categories')}>
-                    Sources
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to="/course-registry">
-                    Course Registry
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to="/about">About</MobileNavLink>
-                </li>
-              </ul>
-              <div style={{ textAlign: 'center' }}>
-                <Button
-                  as={Link}
-                  className={styles.button}
-                  to="https://www.dariah.eu/helpdesk/"
-                >
-                  Contact
-                </Button>
-              </div>
-            </nav>
+              <button
+                aria-label="Close menu"
+                className={styles.mobileNavCloseButton}
+                onClick={() => setOverlayInvisible()}
+              >
+                &times;
+              </button>
+              <nav>
+                <ul className={styles.mobileNavItems}>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to="/">Home</MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('posts')}>
+                      Resources
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('authors')}>
+                      Authors
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('tags')}>
+                      Topics
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('categories')}>
+                      Sources
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to="/course-registry">
+                      Course Registry
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to="/about">About</MobileNavLink>
+                  </li>
+                </ul>
+                <div style={{ textAlign: 'center' }}>
+                  <Button
+                    as={Link}
+                    className={styles.button}
+                    to="https://www.dariah.eu/helpdesk/"
+                  >
+                    Contact
+                  </Button>
+                </div>
+              </nav>
+            </div>
           </div>
-        </div>
+        </FocusLock>
       </Portal>
     </div>
   )
