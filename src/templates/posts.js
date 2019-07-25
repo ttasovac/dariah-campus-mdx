@@ -4,7 +4,9 @@ import { graphql } from 'gatsby'
 import Head from 'components/Head/Head'
 import Pagination from 'components/Pagination/Pagination'
 import PostPreview from 'components/PostPreview/PostPreview'
+import TagCloud from 'components/TagCloud/TagCloud'
 
+import Collapsible from 'elements/Collapsible/Collapsible'
 import Grid from 'elements/Grid/Grid'
 import Page from 'elements/Page/Page'
 import Title from 'elements/Title/Title'
@@ -13,6 +15,9 @@ const PostsTemplate = ({ data }) => (
   <Page>
     <Head title="Resources" />
     <Title>Resources</Title>
+    <Collapsible title="Filter by topic">
+      <TagCloud />
+    </Collapsible>
     <Grid>
       {data.posts.nodes.map((post, i, posts) => (
         <PostPreview
