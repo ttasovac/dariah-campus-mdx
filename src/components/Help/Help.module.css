@@ -15,6 +15,14 @@
   }
 }
 
+@media (max-width: 30rem) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--margin-large);
+  }
+}
+
 .author {
   display: flex;
   flex-basis: 20rem;

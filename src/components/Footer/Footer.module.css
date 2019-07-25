@@ -72,3 +72,9 @@
   flex-basis: 6rem;
   padding: var(--padding-small);
 }
+
+@media (max-width: 40rem) {
+  .small-print {
+    flex-direction: column;
+  }
+}

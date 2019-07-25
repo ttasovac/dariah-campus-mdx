@@ -18,3 +18,22 @@
   padding: var(--padding-huge);
   width: 100%;
 }
+
+@media (max-width: 60rem) {
+  .search-bar {
+    margin: var(--margin-large) var(--margin-medium);
+    padding: 0 var(--padding-medium);
+  }
+}
+
+@media (max-width: 40rem) {
+  .search-bar {
+    margin: var(--margin-small);
+  }
+  .search-bar-label {
+    padding: 0 var(--padding-small);
+  }
+  .search-bar-input {
+    padding: var(--padding-large);
+  }
+}

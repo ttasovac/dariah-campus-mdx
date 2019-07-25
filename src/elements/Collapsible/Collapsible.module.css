@@ -15,7 +15,9 @@
   justify-content: left;
   margin: var(--margin-medium) 0;
   padding: var(--padding-large);
+  padding-right: var(--padding-huge);
   position: relative;
+  text-align: left;
 }
 
 /* .title::before {
@@ -31,7 +33,7 @@
 
 .arrow {
   position: absolute;
-  right: var(--margin-huge);
+  right: 3rem;
   transform: translateY(-6px);
 }
 .arrow::after,

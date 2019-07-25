@@ -61,7 +61,12 @@
   background: none;
   border: none;
   cursor: pointer;
-  margin: var(--margin-large);
+  padding: var(--padding-large);
+}
+
+.mobile-nav-search {
+  padding: var(--padding-large);
+  width: var(--margin-large);
 }
 
 .mobile-nav-panel {

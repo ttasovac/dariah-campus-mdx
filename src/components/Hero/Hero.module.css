@@ -16,3 +16,11 @@
 .hero-image {
   width: 25rem;
 }
+
+@media (max-width: 40rem) {
+  .hero-title {
+    font-size: 5rem;
+    line-height: 1.2;
+    margin: var(--margin-medium) 0;
+  }
+}
