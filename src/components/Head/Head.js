@@ -159,66 +159,71 @@ const Head = ({ article, type, ...page }) => {
               <meta property="og:image:width" content={image.width} />
 
               {isArticle ? (
-                <>
-                  <meta
-                    property="article:published_time"
-                    content={article.isoDate}
-                  />
-                  {(article.authors || []).map(author => (
+                <meta
+                  property="article:published_time"
+                  content={article.isoDate}
+                />
+              ) : null}
+
+              {isArticle
+                ? (article.authors || []).map(author => (
                     <meta
                       key={author.slug}
                       property="article:author"
                       content={author.name}
                     />
-                  ))}
-                  {(article.tags || []).map(tag => (
+                  ))
+                : null}
+
+              {isArticle
+                ? (article.tags || []).map(tag => (
                     <meta
                       key={tag.slug}
                       property="article:tag"
                       content={tag.name}
                     />
-                  ))}
-                </>
-              ) : null}
-            </Helmet>
-            <script key="schemaWebpageOwner" type="application/ld+json">
-              {JSON.stringify(schemaWebpageOwner)}
-            </script>
+                  ))
+                : null}
 
-            <script key="schemaWebpage" type="application/ld+json">
-              {JSON.stringify(schemaWebpage)}
-            </script>
-
-            {schemaArticleAuthors ? (
-              schemaArticleAuthors.length > 1 ? (
-                schemaArticleAuthors.map((schemaArticleAuthor, i) => (
-                  <script
-                    key={`schemaArticleAuthor${i ? i : ''}`}
-                    type="application/ld+json"
-                  >
-                    {JSON.stringify(schemaArticleAuthor)}
-                  </script>
-                ))
-              ) : (
-                <script key="schemaArticleAuthor" type="application/ld+json">
-                  {JSON.stringify(schemaArticleAuthors[0])}
-                </script>
-              )
-            ) : null}
-
-            {schemaArticle ? (
-              <script key="schemaArticle" type="application/ld+json">
-                {JSON.stringify(schemaArticle)}
+              <script key="schemaWebpageOwner" type="application/ld+json">
+                {JSON.stringify(schemaWebpageOwner)}
               </script>
-            ) : null}
 
-            <script key="schemaBreadcrumbs" type="application/ld+json">
-              {JSON.stringify(schemaBreadcrumbs)}
-            </script>
+              <script key="schemaWebpage" type="application/ld+json">
+                {JSON.stringify(schemaWebpage)}
+              </script>
 
-            <script key="schemaSiteNav" type="application/ld+json">
-              {JSON.stringify(schemaSiteNav)}
-            </script>
+              {schemaArticleAuthors ? (
+                schemaArticleAuthors.length > 1 ? (
+                  schemaArticleAuthors.map((schemaArticleAuthor, i) => (
+                    <script
+                      key={`schemaArticleAuthor${i ? i : ''}`}
+                      type="application/ld+json"
+                    >
+                      {JSON.stringify(schemaArticleAuthor)}
+                    </script>
+                  ))
+                ) : (
+                  <script key="schemaArticleAuthor" type="application/ld+json">
+                    {JSON.stringify(schemaArticleAuthors[0])}
+                  </script>
+                )
+              ) : null}
+
+              {schemaArticle ? (
+                <script key="schemaArticle" type="application/ld+json">
+                  {JSON.stringify(schemaArticle)}
+                </script>
+              ) : null}
+
+              <script key="schemaBreadcrumbs" type="application/ld+json">
+                {JSON.stringify(schemaBreadcrumbs)}
+              </script>
+
+              <script key="schemaSiteNav" type="application/ld+json">
+                {JSON.stringify(schemaSiteNav)}
+              </script>
+            </Helmet>
           </>
         )
       }}

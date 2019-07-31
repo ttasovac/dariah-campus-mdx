@@ -55,8 +55,6 @@ export const query = graphql`
       body
       frontmatter {
         authors {
-          name
-          slug
           avatar {
             image: childImageSharp {
               fixed(width: 36, height: 36) {
@@ -64,6 +62,9 @@ export const query = graphql`
               }
             }
           }
+          id
+          name
+          slug
         }
         categories {
           name
