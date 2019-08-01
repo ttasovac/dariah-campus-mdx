@@ -21,7 +21,7 @@ const TagPreview = ({ description, name, posts, slug }) => {
             {name}
           </ReadMoreLink>
         </Heading>
-        <PostsCount />
+        <PostsCount posts={posts} />
         <Paragraph>{description}</Paragraph>
         <ReadMoreLink posts={posts} to={path} />
       </Card.Body>
