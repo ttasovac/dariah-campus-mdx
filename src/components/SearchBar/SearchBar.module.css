@@ -45,11 +45,13 @@
 }
 
 .search-result:first-of-type {
-  border-radius: var(--border-rounded-medium) var(--border-rounded-medium) 0 0;
+  border-top-left-radius: var(--border-rounded-medium);
+  border-top-right-radius: var(--border-rounded-medium);
 }
 
 .search-result:last-of-type {
-  border-radius: 0 0 var(--border-rounded-medium) var(--border-rounded-medium);
+  border-bottom-left-radius: var(--border-rounded-medium);
+  border-bottom-right-radius: var(--border-rounded-medium);
 }
 
 .search-result:hover,

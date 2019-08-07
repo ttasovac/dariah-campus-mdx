@@ -39,7 +39,7 @@ export const query = graphql`
       nodes {
         avatar {
           image: childImageSharp {
-            fixed(width: 36, height: 36) {
+            fixed(width: 200, height: 200, quality: 100) {
               ...GatsbyImageSharpFixed_withWebp
             }
           }
