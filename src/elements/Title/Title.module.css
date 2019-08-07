@@ -1,6 +1,7 @@
 .title {
   /* color: var(--color-primary); */
   font-size: var(--font-size-title);
+  font-weight: 600;
   margin: var(--margin-medium) 0;
   text-align: center;
 }

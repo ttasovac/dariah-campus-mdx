@@ -23,6 +23,7 @@
 
 .nav-link {
   font-size: var(--font-size-small);
+  font-weight: 400;
   padding: 0 var(--padding-small);
 }
 

@@ -5,6 +5,7 @@
 
 .hero-title {
   font-size: var(--font-size-hero);
+  font-weight: 600;
 }
 
 .hero-subtitle {
