@@ -10,7 +10,7 @@
   box-shadow: var(--boxshadow-large);
   font-size: var(--font-size-heading1);
   line-height: 1;
-  padding: var(--padding-huge);
+  padding: 3rem var(--padding-huge);
   width: 100%;
 }
 
