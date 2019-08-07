@@ -5,8 +5,6 @@ import { FaFacebook, FaTwitter } from 'react-icons/fa'
 
 import Link from 'components/Link/Link'
 
-import { createPath } from 'utils/create-path'
-
 import styles from './ShareButtons.module.css'
 
 const ShareButtons = ({ className, metadata }) => (
@@ -16,18 +14,17 @@ const ShareButtons = ({ className, metadata }) => (
         <Link
           to={`https://www.twitter.com/intent/tweet?text=${encodeURIComponent(
             metadata.title
-          )}&url=${createPath(
-            location.origin,
-            location.pathname
+          )}&url=${[location.origin, location.pathname].join(
+            ''
           )}&via=DARIAHeu&related=https://twitter.com/dariaheu`}
         >
           <FaTwitter />
         </Link>
         <Link
-          to={`https://www.facebook.com/sharer/sharer.php?u=${createPath(
+          to={`https://www.facebook.com/sharer/sharer.php?u=${[
             location.origin,
-            location.pathname
-          )}&title=${encodeURIComponent(metadata.title)}`}
+            location.pathname,
+          ].join('')}&title=${encodeURIComponent(metadata.title)}`}
         >
           <FaFacebook />
         </Link>
