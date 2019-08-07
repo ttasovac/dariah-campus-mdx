@@ -141,7 +141,7 @@
   background-color: var(--color-white);
   box-shadow: none;
   font-size: var(--font-size-text);
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 }
 
 @media (max-width: 60rem) {

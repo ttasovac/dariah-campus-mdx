@@ -173,18 +173,36 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String! @slug(from: "name")
     }
 
+    type License {
+      name: String
+      url: String
+    }
+
+    type Resource {
+      name: String
+      icon: String
+    }
+
     type Frontmatter {
       abstract: String @truncate(characters: 140)
       authors: [Author!] @defaultValue(values: ["dariah"]) @link(by: "slug")
       categories: [Category!] @link(by: "slug")
       date: Date @dateformat(formatString: "MMM, DD YYYY")
+      # dateModified: Date @dateformat(formatString: "MMM, DD YYYY")
+      domain: String @defaultValue(value: "Social Sciences and Humanities")
       # featuredImage: File @fileByRelativePath
       isoDate: Date @proxy(from: "date")
       lang: String @defaultValue(value: "en")
+      license: License @link(by: "name") @defaultValue(value: "CCBY 4.0")
+      pid: ID
       slug: String @slug(from: "title")
       tags: [Tag!] @link(by: "slug")
+      """ one of ["Data managers", "Domain researchers", "Data service engineers", "Data scientists/analysts"] """
+      targetGroup: String
       title: String!
       toc: Boolean
+      type: Resource
+      version: Float
     }
 
     type Mdx implements Node {

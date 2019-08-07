@@ -223,6 +223,10 @@ const Head = ({ article, type, ...page }) => {
               <script key="schemaSiteNav" type="application/ld+json">
                 {JSON.stringify(schemaSiteNav)}
               </script>
+
+              {isArticle ? (
+                <link rel="license" href={article.license.url} />
+              ) : null}
             </Helmet>
           </>
         )
