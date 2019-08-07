@@ -16,7 +16,7 @@ import { useMatchedPosts } from 'utils/use-matched-posts'
 import '@reach/combobox/styles.css'
 import styles from './SearchBar.module.css'
 
-const SearchBar = ({ className }) => {
+const SearchBar = React.forwardRef(({ className }, ref) => {
   const [searchTerm, setSearchTerm] = React.useState('')
 
   const searchResults = useMatchedPosts(searchTerm)
@@ -42,6 +42,7 @@ const SearchBar = ({ className }) => {
             className={styles.searchBarInput}
             onChange={e => setSearchTerm(e.target.value)}
             placeholder="Search..."
+            ref={ref}
             selectOnClick
             type="search"
             value={searchTerm}
@@ -65,6 +66,6 @@ const SearchBar = ({ className }) => {
       )}
     </Location>
   )
-}
+})
 
 export default SearchBar

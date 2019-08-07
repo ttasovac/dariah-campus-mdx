@@ -33,6 +33,7 @@
   border-radius: var(--border-rounded-medium);
   box-shadow: var(--boxshadow-medium);
   margin: var(--margin-small);
+  z-index: 1;
 }
 
 .search-results {

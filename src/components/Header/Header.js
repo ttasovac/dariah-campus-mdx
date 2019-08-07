@@ -1,10 +1,12 @@
 import React from 'react'
 import FocusLock from 'react-focus-lock'
 import clsx from 'clsx'
+import { FaSearch } from 'react-icons/fa'
 
 import Link from 'components/Link/Link'
 import Logo from 'components/Logo/Logo'
 import Portal from 'components/Portal/Portal'
+import SearchBar from 'components/SearchBar/SearchBar'
 
 import Button from 'elements/Button/Button'
 import Container from 'elements/Container/Container'
@@ -21,42 +23,66 @@ const NavLink = props => (
   />
 )
 
-const Nav = () => (
-  <nav className={styles.nav}>
-    <ul className={styles.navItems}>
-      <li className={styles.navItem}>
-        <NavLink to="/">
-          <Logo critical text />
-        </NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('posts')}>Resources</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('authors')}>Authors</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('tags')}>Topics</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('categories')}>Sources</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to="/course-registry">Course Registry</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to="/about">About</NavLink>
-      </li>
-    </ul>
-    <Button
-      as={Link}
-      className={styles.button}
-      to="https://www.dariah.eu/helpdesk/"
-    >
-      Contact
-    </Button>
-  </nav>
-)
+const Nav = () => {
+  const [searchBarVisible, setSearchBarVisible] = React.useState(false)
+  const searchBarRef = React.createRef()
+
+  React.useEffect(() => {
+    if (searchBarVisible && searchBarRef.current) {
+      searchBarRef.current.focus()
+    }
+  }, [searchBarVisible])
+
+  return (
+    <nav className={styles.nav}>
+      <ul className={styles.navItems}>
+        <li className={styles.navItem}>
+          <NavLink to="/">
+            <Logo critical text />
+          </NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to={getBasePath('posts')}>Resources</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to={getBasePath('authors')}>Authors</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to={getBasePath('tags')}>Topics</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to={getBasePath('categories')}>Sources</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to="/course-registry">Course Registry</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to="/about">About</NavLink>
+        </li>
+      </ul>
+      <div className={styles.searchBarContainer}>
+        {searchBarVisible ? (
+          <SearchBar ref={searchBarRef} className={styles.searchBar} />
+        ) : null}
+      </div>
+      <button
+        onClick={() =>
+          setSearchBarVisible(searchBarVisible => !searchBarVisible)
+        }
+        className={styles.searchBarToggle}
+      >
+        <FaSearch />
+      </button>
+      <Button
+        as={Link}
+        className={styles.button}
+        to="https://www.dariah.eu/helpdesk/"
+      >
+        Contact
+      </Button>
+    </nav>
+  )
+}
 
 const MobileNavLink = props => (
   <Link
