@@ -346,19 +346,19 @@ exports.createPages = async ({ actions, graphql }) => {
     })
   })
 
-  const authors = data.authors.count
-  const authorsBasePath = paths.find(route => route.name === 'authors').path
-  const authorsPages = Math.ceil(authors / POSTS_PER_PAGE)
-  range(authorsPages).forEach(page => {
-    actions.createPage({
-      path: createPath(authorsBasePath, page ? page + 1 : null),
-      component: path.resolve('./src/templates/authors.js'),
-      context: {
-        skip: page * POSTS_PER_PAGE,
-        limit: POSTS_PER_PAGE,
-      },
-    })
-  })
+  // const authors = data.authors.count
+  // const authorsBasePath = paths.find(route => route.name === 'authors').path
+  // const authorsPages = Math.ceil(authors / POSTS_PER_PAGE)
+  // range(authorsPages).forEach(page => {
+  //   actions.createPage({
+  //     path: createPath(authorsBasePath, page ? page + 1 : null),
+  //     component: path.resolve('./src/templates/authors.js'),
+  //     context: {
+  //       skip: page * POSTS_PER_PAGE,
+  //       limit: POSTS_PER_PAGE,
+  //     },
+  //   })
+  // })
 
   const categories = data.categories.count
   const categoriesBasePath = paths.find(route => route.name === 'categories')

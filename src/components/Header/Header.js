@@ -44,9 +44,9 @@ const Nav = () => {
         <li className={styles.navItem}>
           <NavLink to={getBasePath('posts')}>Resources</NavLink>
         </li>
-        <li className={styles.navItem}>
+        {/* <li className={styles.navItem}>
           <NavLink to={getBasePath('authors')}>Authors</NavLink>
-        </li>
+        </li> */}
         <li className={styles.navItem}>
           <NavLink to={getBasePath('tags')}>Topics</NavLink>
         </li>
@@ -188,11 +188,11 @@ const MobileNav = () => {
                       Resources
                     </MobileNavLink>
                   </li>
-                  <li className={styles.mobileNavItem}>
+                  {/* <li className={styles.mobileNavItem}>
                     <MobileNavLink to={getBasePath('authors')}>
                       Authors
                     </MobileNavLink>
-                  </li>
+                  </li> */}
                   <li className={styles.mobileNavItem}>
                     <MobileNavLink to={getBasePath('tags')}>
                       Topics

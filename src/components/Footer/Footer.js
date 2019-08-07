@@ -31,9 +31,9 @@ const Footer = ({ className }) => (
           <li className={styles.navItem}>
             <NavLink to={getBasePath('posts')}>Resources</NavLink>
           </li>
-          <li className={styles.navItem}>
+          {/* <li className={styles.navItem}>
             <NavLink to={getBasePath('authors')}>Authors</NavLink>
-          </li>
+          </li> */}
           <li className={styles.navItem}>
             <NavLink to={getBasePath('tags')}>Topics</NavLink>
           </li>
