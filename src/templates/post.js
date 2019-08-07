@@ -80,8 +80,7 @@ export const query = graphql`
         toc
       }
       id
-      # tableOfContents(pathToSlugField: "frontmatter.slug", maxDepth: 3)
-      tableOfContents
+      tableOfContents(maxDepth: 3)
     }
     postsRelatedByCategory: allMdx(
       filter: {

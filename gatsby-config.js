@@ -175,18 +175,19 @@ module.exports = {
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              offsetY: '400',
+              icon: false,
+            },
+          },
         ],
-        remarkPlugins: [
-          // 'remark-slug',
-          // 'remark-autolink-headings', // Or just use <Heading /> and custom scroll handling
-        ],
+        remarkPlugins: [],
         plugins: [
           'gatsby-remark-images', // FIXME: Temporary workaround
+          'gatsby-remark-autolink-headers', // FIXME: Temporary workaround
         ],
-        tableOfContents: {
-          pathToSlugField: 'frontmatter.slug',
-          maxDepth: 3,
-        },
       },
     },
     {

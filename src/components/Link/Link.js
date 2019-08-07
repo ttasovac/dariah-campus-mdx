@@ -24,6 +24,14 @@ const Link = ({
   to,
   ...rest
 }) => {
+  if (String(to || href).startsWith('#')) {
+    return (
+      <a className={clsx(styles.link, className)} href={to || href}>
+        {children}
+      </a>
+    )
+  }
+
   if (isAbsoluteUrl(to || href)) {
     /* eslint-disable react/jsx-no-target-blank */
     return (
@@ -53,7 +61,9 @@ const Link = ({
 }
 
 // Overwrites for posts
-export const PostLink = props => <Link {...props} className={styles.postLink} />
+export const PostLink = ({ className, ...rest }) => (
+  <Link {...rest} className={clsx(className, styles.postLink)} />
+)
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
