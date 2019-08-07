@@ -180,7 +180,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       date: Date @dateformat(formatString: "MMM, DD YYYY")
       # featuredImage: File @fileByRelativePath
       isoDate: Date @proxy(from: "date")
-      lang: String
+      lang: String @defaultValue(value: "en")
       slug: String @slug(from: "title")
       tags: [Tag!] @link(by: "slug")
       title: String!

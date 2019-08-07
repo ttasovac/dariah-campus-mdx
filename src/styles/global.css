@@ -95,3 +95,7 @@ img {
   height: auto;
   max-width: 100%;
 }
+
+.gatsby-resp-image-image {
+  border-radius: 1rem;
+}

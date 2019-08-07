@@ -168,16 +168,13 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 800, // var(--grid-column-width-small)
-              withWebp: true, // default false
-              // linkImagesToOriginal: false, // default true
-              // showCaptions: false, // default false
-              // wrapperStyle: undefined, // can be a function that gets passed fixed/fluid
-              // backgroundColor: 'transparent', // default 'white'
+              maxWidth: 800,
+              withWebp: true,
+              linkImagesToOriginal: false,
             },
           },
-          // 'gatsby-remark-copy-linked-files',
-          // 'gatsby-remark-smartypants',
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-smartypants',
         ],
         remarkPlugins: [
           // 'remark-slug',
@@ -186,6 +183,10 @@ module.exports = {
         plugins: [
           'gatsby-remark-images', // FIXME: Temporary workaround
         ],
+        tableOfContents: {
+          pathToSlugField: 'frontmatter.slug',
+          maxDepth: 3,
+        },
       },
     },
     {

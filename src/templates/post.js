@@ -18,7 +18,6 @@ import Title from 'elements/Title/Title'
 
 import components from 'components'
 
-// FIXME: Decide heading levels in posts, i.e. do we need a subtitle (h2)
 const postComponents = {
   ...components,
   a: props => <PostLink {...props} />,
@@ -31,7 +30,7 @@ const PostTemplate = ({ data }) => (
     <Container size="small">
       <Title>{data.post.frontmatter.title}</Title>
       <PostMetadata metadata={data.post.frontmatter} />
-      {data.post.frontmatter.toc && <TOC headings={data.post.headings} />}
+      {data.post.frontmatter.toc && <TOC toc={data.post.tableOfContents} />}
       <article>
         <MDXProvider components={postComponents}>
           <MDXRenderer>{data.post.body}</MDXRenderer>
@@ -80,11 +79,9 @@ export const query = graphql`
         title
         toc
       }
-      headings {
-        value
-        depth
-      }
       id
+      # tableOfContents(pathToSlugField: "frontmatter.slug", maxDepth: 3)
+      tableOfContents
     }
     postsRelatedByCategory: allMdx(
       filter: {
