@@ -9,8 +9,8 @@ import Title from 'elements/Title/Title'
 
 const EventTemplate = ({ data }) => (
   <Page>
-    <Head title="Event" />
-    <Title>Event</Title>
+    <Head title={data.index.frontmatter.title} />
+    <Title>{data.index.frontmatter.title}</Title>
 
     <h1>Index</h1>
     <MDXRenderer>{data.index.body}</MDXRenderer>
@@ -31,6 +31,9 @@ export const query = graphql`
   query($indexId: String!, $aboutId: String!, $sessionIds: [String!]!) {
     index: mdx(id: { eq: $indexId }) {
       body
+      frontmatter {
+        title
+      }
     }
     about: mdx(id: { eq: $aboutId }) {
       body
