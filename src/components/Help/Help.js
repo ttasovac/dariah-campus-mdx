@@ -20,7 +20,7 @@ const Help = ({ className }) => {
         nodes {
           avatar {
             image: childImageSharp {
-              fixed(width: 86, height: 86) {
+              fixed(width: 86, height: 86, quality: 100) {
                 ...GatsbyImageSharpFixed_withWebp
               }
             }

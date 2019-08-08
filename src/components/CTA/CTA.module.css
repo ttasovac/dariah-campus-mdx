@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   margin: var(--margin-huge);
+  text-align: center;
 }
 
 .title {

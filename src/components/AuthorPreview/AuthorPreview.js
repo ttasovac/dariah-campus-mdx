@@ -18,27 +18,22 @@ const AuthorPreview = ({ avatar, description, name, posts, slug }) => {
 
   return (
     <Card>
-      <Card.Body>
-        <Heading>
-          <ReadMoreLink posts={posts} to={path}>
-            {name}
-          </ReadMoreLink>
-        </Heading>
-        <PostsCount posts={posts} />
-        <Paragraph>{description}</Paragraph>
-        {avatar && (
-          <Image
-            style={{
-              position: 'absolute',
-              top: 'var(--padding-huge)',
-              right: 'var(--padding-huge)',
-            }}
-            className={styles.authorImage}
-            fixed={avatar.image.fixed}
-          />
-        )}
-        <ReadMoreLink posts={posts} to={path} />
-      </Card.Body>
+      <div className={styles.container}>
+        <div className={styles.imageContainer}>
+          <Image className={styles.image} fixed={avatar.image.fixed} />
+        </div>
+
+        <Card.Body>
+          <Heading>
+            <ReadMoreLink posts={posts} to={path}>
+              {name}
+            </ReadMoreLink>
+          </Heading>
+          <PostsCount posts={posts} />
+          <Paragraph>{description}</Paragraph>
+          <ReadMoreLink posts={posts} to={path} />
+        </Card.Body>
+      </div>
     </Card>
   )
 }

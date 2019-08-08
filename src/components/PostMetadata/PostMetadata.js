@@ -36,16 +36,16 @@ const PostMetadata = ({ className, metadata }) => (
       </div>
       <div>
         <div>
-          Written by {getNames(metadata.authors, getBasePath('authors'))}
+          Written by {getNames(metadata.authors, getBasePath('author'))}
         </div>
         <time>{metadata.date}</time>
       </div>
     </div>
     <div className={styles.metadataRight}>
       <div>
-        Source: {getNames(metadata.categories, getBasePath('categories'))}
+        Source: {getNames(metadata.categories, getBasePath('category'))}
       </div>
-      <div>Topics: {getNames(metadata.tags, getBasePath('tags'))}</div>
+      <div>Topics: {getNames(metadata.tags, getBasePath('tag'))}</div>
     </div>
   </div>
 )

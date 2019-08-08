@@ -1,10 +1,11 @@
 .grid {
   display: grid;
-  grid-gap: var(--margin-medium);
+  grid-gap: var(--margin-huge);
   grid-template-columns: repeat(
     auto-fill,
     minmax(var(--grid-column-width-medium), 1fr)
   );
+  margin: var(--margin-large) 0;
 }
 
 .grid-small {

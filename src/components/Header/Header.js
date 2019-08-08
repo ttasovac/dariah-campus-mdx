@@ -1,9 +1,12 @@
 import React from 'react'
+import FocusLock from 'react-focus-lock'
 import clsx from 'clsx'
+import { FaSearch } from 'react-icons/fa'
 
 import Link from 'components/Link/Link'
 import Logo from 'components/Logo/Logo'
 import Portal from 'components/Portal/Portal'
+import SearchBar from 'components/SearchBar/SearchBar'
 
 import Button from 'elements/Button/Button'
 import Container from 'elements/Container/Container'
@@ -20,42 +23,66 @@ const NavLink = props => (
   />
 )
 
-const Nav = () => (
-  <nav className={styles.nav}>
-    <ul className={styles.navItems}>
-      <li className={styles.navItem}>
-        <NavLink to="/">
-          <Logo critical text />
-        </NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('posts')}>Resources</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('authors')}>Authors</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('tags')}>Topics</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to={getBasePath('categories')}>Sources</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to="/course-registry">Course Registry</NavLink>
-      </li>
-      <li className={styles.navItem}>
-        <NavLink to="/about">About</NavLink>
-      </li>
-    </ul>
-    <Button
-      as={Link}
-      className={styles.button}
-      to="https://www.dariah.eu/helpdesk/"
-    >
-      Contact
-    </Button>
-  </nav>
-)
+const Nav = () => {
+  const [searchBarVisible, setSearchBarVisible] = React.useState(false)
+  const searchBarRef = React.createRef()
+
+  React.useEffect(() => {
+    if (searchBarVisible && searchBarRef.current) {
+      searchBarRef.current.focus()
+    }
+  }, [searchBarVisible])
+
+  return (
+    <nav className={styles.nav}>
+      <ul className={styles.navItems}>
+        <li className={styles.navItem}>
+          <NavLink to="/">
+            <Logo critical text />
+          </NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to={getBasePath('posts')}>Resources</NavLink>
+        </li>
+        {/* <li className={styles.navItem}>
+          <NavLink to={getBasePath('authors')}>Authors</NavLink>
+        </li> */}
+        <li className={styles.navItem}>
+          <NavLink to={getBasePath('tags')}>Topics</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to={getBasePath('categories')}>Sources</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to="/course-registry">Course Registry</NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink to="/about">About</NavLink>
+        </li>
+      </ul>
+      <div className={styles.searchBarContainer}>
+        {searchBarVisible ? (
+          <SearchBar ref={searchBarRef} className={styles.searchBar} />
+        ) : null}
+      </div>
+      <button
+        onClick={() =>
+          setSearchBarVisible(searchBarVisible => !searchBarVisible)
+        }
+        className={styles.searchBarToggle}
+      >
+        <FaSearch />
+      </button>
+      <Button
+        as={Link}
+        className={styles.button}
+        to="https://www.dariah.eu/helpdesk/"
+      >
+        Contact
+      </Button>
+    </nav>
+  )
+}
 
 const MobileNavLink = props => (
   <Link
@@ -80,6 +107,7 @@ const Hamburger = () => (
 
 const MobileNav = () => {
   const [isVisible, setIsVisible] = React.useState(false)
+  const openButtonRef = React.createRef()
 
   const setOverlayVisible = () => {
     const documentWidth = document.documentElement.clientWidth
@@ -97,6 +125,12 @@ const MobileNav = () => {
   }
 
   React.useEffect(() => {
+    if (!isVisible && openButtonRef.current) {
+      openButtonRef.current.focus()
+    }
+  }, [isVisible])
+
+  React.useEffect(() => {
     return () => setOverlayInvisible()
   }, [])
 
@@ -104,6 +138,7 @@ const MobileNav = () => {
     <div className={styles.mobileNav}>
       <div className={styles.mobileNavBar}>
         <button
+          ref={openButtonRef}
           aria-label="Open menu"
           className={styles.mobileNavToggle}
           onClick={() => setOverlayVisible()}
@@ -113,74 +148,83 @@ const MobileNav = () => {
         <NavLink to="/">
           <Logo critical text />
         </NavLink>
-        <div />
+        <div className={styles.mobileNavSearch} />
       </div>
       <Portal>
-        <div
-          className={styles.mobileNavOverlay}
-          style={{
-            pointerEvents: isVisible ? 'all' : 'none',
-            opacity: isVisible ? 1 : 0,
-          }}
-          onClick={() => setOverlayInvisible()}
-        >
+        <FocusLock disabled={!isVisible}>
           <div
-            className={styles.mobileNavPanel}
+            className={styles.mobileNavOverlay}
             style={{
-              transform: isVisible ? undefined : 'translateX(-100%)',
+              pointerEvents: isVisible ? 'all' : 'none',
+              opacity: isVisible ? 1 : 0,
+            }}
+            onClick={() => setOverlayInvisible()}
+            onKeyDown={e => {
+              if (e.key === 'Escape') {
+                setOverlayInvisible()
+              }
             }}
           >
-            <button
-              aria-label="Close menu"
-              className={styles.mobileNavCloseButton}
-              onClick={() => setOverlayInvisible()}
+            <div
+              className={styles.mobileNavPanel}
+              style={{
+                transform: isVisible ? undefined : 'translateX(-100%)',
+              }}
             >
-              &times;
-            </button>
-            <nav>
-              <ul className={styles.mobileNavItems}>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to="/">Home</MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('posts')}>
-                    Resources
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('authors')}>
-                    Authors
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('tags')}>Topics</MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to={getBasePath('categories')}>
-                    Sources
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to="/course-registry">
-                    Course Registry
-                  </MobileNavLink>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <MobileNavLink to="/about">About</MobileNavLink>
-                </li>
-              </ul>
-              <div style={{ textAlign: 'center' }}>
-                <Button
-                  as={Link}
-                  className={styles.button}
-                  to="https://www.dariah.eu/helpdesk/"
-                >
-                  Contact
-                </Button>
-              </div>
-            </nav>
+              <button
+                aria-label="Close menu"
+                className={styles.mobileNavCloseButton}
+                onClick={() => setOverlayInvisible()}
+              >
+                &times;
+              </button>
+              <nav>
+                <ul className={styles.mobileNavItems}>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to="/">Home</MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('posts')}>
+                      Resources
+                    </MobileNavLink>
+                  </li>
+                  {/* <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('authors')}>
+                      Authors
+                    </MobileNavLink>
+                  </li> */}
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('tags')}>
+                      Topics
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to={getBasePath('categories')}>
+                      Sources
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to="/course-registry">
+                      Course Registry
+                    </MobileNavLink>
+                  </li>
+                  <li className={styles.mobileNavItem}>
+                    <MobileNavLink to="/about">About</MobileNavLink>
+                  </li>
+                </ul>
+                <div style={{ textAlign: 'center' }}>
+                  <Button
+                    as={Link}
+                    className={styles.button}
+                    to="https://www.dariah.eu/helpdesk/"
+                  >
+                    Contact
+                  </Button>
+                </div>
+              </nav>
+            </div>
           </div>
-        </div>
+        </FocusLock>
       </Portal>
     </div>
   )

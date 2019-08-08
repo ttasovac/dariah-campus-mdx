@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Image from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 
@@ -18,7 +19,6 @@ import Title from 'elements/Title/Title'
 
 import components from 'components'
 
-// FIXME: Decide heading levels in posts, i.e. do we need a subtitle (h2)
 const postComponents = {
   ...components,
   a: props => <PostLink {...props} />,
@@ -31,7 +31,10 @@ const PostTemplate = ({ data }) => (
     <Container size="small">
       <Title>{data.post.frontmatter.title}</Title>
       <PostMetadata metadata={data.post.frontmatter} />
-      {data.post.frontmatter.toc && <TOC headings={data.post.headings} />}
+      {data.post.frontmatter.featuredImage && (
+        <Image fluid={data.post.frontmatter.featuredImage.image.fluid} />
+      )}
+      {data.post.frontmatter.toc && <TOC toc={data.post.tableOfContents} />}
       <article>
         <MDXProvider components={postComponents}>
           <MDXRenderer>{data.post.body}</MDXRenderer>
@@ -55,8 +58,6 @@ export const query = graphql`
       body
       frontmatter {
         authors {
-          name
-          slug
           avatar {
             image: childImageSharp {
               fixed(width: 36, height: 36) {
@@ -64,14 +65,27 @@ export const query = graphql`
               }
             }
           }
+          id
+          name
+          slug
         }
         categories {
           name
           slug
         }
         date
+        featuredImage {
+          image: childImageSharp {
+            fluid(maxWidth: 800) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
         isoDate
         lang
+        license {
+          url
+        }
         tags {
           name
           slug
@@ -79,11 +93,8 @@ export const query = graphql`
         title
         toc
       }
-      headings {
-        value
-        depth
-      }
       id
+      tableOfContents(maxDepth: 3)
     }
     postsRelatedByCategory: allMdx(
       filter: {

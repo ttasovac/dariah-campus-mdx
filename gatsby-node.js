@@ -173,18 +173,36 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String! @slug(from: "name")
     }
 
+    type License implements Node @dontInfer {
+      name: String
+      url: String
+    }
+
+    type Resource implements Node @dontInfer {
+      name: String
+      icon: String
+    }
+
     type Frontmatter {
       abstract: String @truncate(characters: 140)
       authors: [Author!] @defaultValue(values: ["dariah"]) @link(by: "slug")
       categories: [Category!] @link(by: "slug")
       date: Date @dateformat(formatString: "MMM, DD YYYY")
-      # featuredImage: File @fileByRelativePath
+      # dateModified: Date @fileInfo @dateformat(formatString: "MMM, DD YYYY") @proxy(from: "mtime")
+      domain: String @defaultValue(value: "Social Sciences and Humanities")
+      featuredImage: File @fileByRelativePath
       isoDate: Date @proxy(from: "date")
-      lang: String
+      lang: String @defaultValue(value: "en")
+      license: License @link(by: "name") @defaultValue(value: "CCBY 4.0")
+      pid: ID
       slug: String @slug(from: "title")
       tags: [Tag!] @link(by: "slug")
+      """ one of ["Data managers", "Domain researchers", "Data service engineers", "Data scientists/analysts"] """
+      targetGroup: String
       title: String!
       toc: Boolean
+      type: Resource @link(by: "name")
+      version: Float
     }
 
     type Mdx implements Node {
@@ -346,19 +364,19 @@ exports.createPages = async ({ actions, graphql }) => {
     })
   })
 
-  const authors = data.authors.count
-  const authorsBasePath = paths.find(route => route.name === 'authors').path
-  const authorsPages = Math.ceil(authors / POSTS_PER_PAGE)
-  range(authorsPages).forEach(page => {
-    actions.createPage({
-      path: createPath(authorsBasePath, page ? page + 1 : null),
-      component: path.resolve('./src/templates/authors.js'),
-      context: {
-        skip: page * POSTS_PER_PAGE,
-        limit: POSTS_PER_PAGE,
-      },
-    })
-  })
+  // const authors = data.authors.count
+  // const authorsBasePath = paths.find(route => route.name === 'authors').path
+  // const authorsPages = Math.ceil(authors / POSTS_PER_PAGE)
+  // range(authorsPages).forEach(page => {
+  //   actions.createPage({
+  //     path: createPath(authorsBasePath, page ? page + 1 : null),
+  //     component: path.resolve('./src/templates/authors.js'),
+  //     context: {
+  //       skip: page * POSTS_PER_PAGE,
+  //       limit: POSTS_PER_PAGE,
+  //     },
+  //   })
+  // })
 
   const categories = data.categories.count
   const categoriesBasePath = paths.find(route => route.name === 'categories')

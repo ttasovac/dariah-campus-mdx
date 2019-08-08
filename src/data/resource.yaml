@@ -1,0 +1,8 @@
+- name: Slides
+  icon: slides
+
+- name: Webinar recording
+  icon: record
+
+- name: Website
+  icon: link
