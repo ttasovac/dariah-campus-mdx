@@ -1,12 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { Location } from '@reach/router'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { getSchemaOrgMetadata } from 'utils/get-schemaorg-metadata'
 
-const Head = ({ article, type, ...page }) => {
+const Head = ({ article, type = 'website', ...page }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -224,7 +223,7 @@ const Head = ({ article, type, ...page }) => {
                 {JSON.stringify(schemaSiteNav)}
               </script>
 
-              {isArticle ? (
+              {isArticle && article.license ? (
                 <link rel="license" href={article.license.url} />
               ) : null}
             </Helmet>
@@ -233,27 +232,6 @@ const Head = ({ article, type, ...page }) => {
       }}
     </Location>
   )
-}
-
-Head.defaultProps = {
-  type: 'website',
-}
-
-Head.propTypes = {
-  author: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    twitter: PropTypes.string,
-  }),
-  description: PropTypes.string,
-  image: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-  }),
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  lang: PropTypes.string,
-  title: PropTypes.string,
-  type: PropTypes.string,
 }
 
 export default Head

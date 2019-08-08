@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import clsx from 'clsx'
-import { FaPlayCircle } from 'react-icons/fa'
+import { FaRegPlayCircle } from 'react-icons/fa'
 
 import Image from 'components/Image/Image'
 import Lightbox from 'components/Lightbox/Lightbox'
@@ -60,7 +60,7 @@ const TrainingVideos = ({ className }) => {
                 fluid={images.romary.image.fluid}
                 className={styles.cardImage}
               />
-              <FaPlayCircle color="var(--color-primary)" size="3em" />
+              <FaRegPlayCircle color="var(--color-primary)" size="3em" />
               <Heading className={styles.cardHeading}>Laurent Romary</Heading>
               <div className={styles.cardText}>Former DARIAH Director</div>
             </Card.Body>
@@ -76,7 +76,7 @@ const TrainingVideos = ({ className }) => {
                 fluid={images.edmond.image.fluid}
                 className={styles.cardImage}
               />
-              <FaPlayCircle color="var(--color-primary)" size="3em" />
+              <FaRegPlayCircle color="var(--color-primary)" size="3em" />
               <Heading className={styles.cardHeading}>Jennifer Edmond</Heading>
               <div className={styles.cardText}>DARIAH Director</div>
             </Card.Body>
@@ -92,7 +92,7 @@ const TrainingVideos = ({ className }) => {
                 fluid={images.fischer.image.fluid}
                 className={styles.cardImage}
               />
-              <FaPlayCircle color="var(--color-primary)" size="3em" />
+              <FaRegPlayCircle color="var(--color-primary)" size="3em" />
               <Heading className={styles.cardHeading}>Frank Fischer</Heading>
               <div className={styles.cardText}>DARIAH Director</div>
             </Card.Body>

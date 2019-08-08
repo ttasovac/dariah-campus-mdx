@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { FaCogs, FaRegFolderOpen, FaUsers } from 'react-icons/fa'
+import { FaCogs, FaFolderOpen, FaUsers } from 'react-icons/fa'
 
 import Link from 'components/Link/Link'
 
@@ -49,7 +49,7 @@ const Browse = ({ className }) => (
       >
         <Card className={styles.card}>
           <Card.Body className={styles.cardBody}>
-            <FaRegFolderOpen color="var(--color-primary)" size="5em" />
+            <FaFolderOpen color="var(--color-primary)" size="5em" />
             <Heading className={styles.cardHeading}>DARIAH Collections</Heading>
             <div className={styles.cardText}>
               Useful collections of external resources curated by the DARIAH
