@@ -173,12 +173,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String! @slug(from: "name")
     }
 
-    type License {
+    type License implements Node @dontInfer {
       name: String
       url: String
     }
 
-    type Resource {
+    type Resource implements Node @dontInfer {
       name: String
       icon: String
     }
@@ -188,9 +188,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       authors: [Author!] @defaultValue(values: ["dariah"]) @link(by: "slug")
       categories: [Category!] @link(by: "slug")
       date: Date @dateformat(formatString: "MMM, DD YYYY")
-      # dateModified: Date @dateformat(formatString: "MMM, DD YYYY")
+      # dateModified: Date @fileInfo @dateformat(formatString: "MMM, DD YYYY") @proxy(from: "mtime")
       domain: String @defaultValue(value: "Social Sciences and Humanities")
-      # featuredImage: File @fileByRelativePath
+      featuredImage: File @fileByRelativePath
       isoDate: Date @proxy(from: "date")
       lang: String @defaultValue(value: "en")
       license: License @link(by: "name") @defaultValue(value: "CCBY 4.0")
@@ -201,7 +201,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       targetGroup: String
       title: String!
       toc: Boolean
-      type: Resource
+      type: Resource @link(by: "name")
       version: Float
     }
 

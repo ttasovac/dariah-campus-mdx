@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Image from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
 
@@ -30,6 +31,9 @@ const PostTemplate = ({ data }) => (
     <Container size="small">
       <Title>{data.post.frontmatter.title}</Title>
       <PostMetadata metadata={data.post.frontmatter} />
+      {data.post.frontmatter.featuredImage && (
+        <Image fluid={data.post.frontmatter.featuredImage.image.fluid} />
+      )}
       {data.post.frontmatter.toc && <TOC toc={data.post.tableOfContents} />}
       <article>
         <MDXProvider components={postComponents}>
@@ -70,8 +74,18 @@ export const query = graphql`
           slug
         }
         date
+        featuredImage {
+          image: childImageSharp {
+            fluid(maxWidth: 800) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
         isoDate
         lang
+        license {
+          url
+        }
         tags {
           name
           slug
