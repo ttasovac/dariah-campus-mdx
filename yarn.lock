@@ -1205,6 +1205,11 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
+"@reach/utils@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.2.3.tgz#820f6a6af4301b4c5065cfc04bb89e6a3d1d723f"
+  integrity sha512-zM9rA8jDchr05giMhL95dPeYkK67cBQnIhCVrOKKqgWGsv+2GE/HZqeptvU4zqs0BvIqsThwov+YxVNVh5csTQ==
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -4347,6 +4352,11 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
+escape-regexp@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/escape-regexp/-/escape-regexp-0.0.1.tgz#f44bda12d45bbdf9cb7f862ee7e4827b3dd32254"
+  integrity sha1-9EvaEtRbvfnLf4Yu5+SCez3TIlQ=
+
 escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -6280,6 +6290,11 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
+
+highlight-words-core@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.2.0.tgz#232bec301cbf2a4943d335dc748ce70e9024f3b1"
+  integrity sha512-nu5bMsWIgpsrlXEMNKSvbJMeUPhFxCOVT28DnI8UCVfhm3e98LC8oeyMNrc7E18+QQ4l/PvbeN7ojyN4XsmBdA==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -11812,6 +11827,11 @@ symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
+
+tabbable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-4.0.0.tgz#5bff1d1135df1482cf0f0206434f15eadbeb9261"
+  integrity sha512-H1XoH1URcBOa/rZZWxLxHCtOdVUEev+9vo5YdYhC9tCY4wnybX+VQrCYuy9ubkg69fCBxCONJOSLGfw0DWMffQ==
 
 table@^5.2.3:
   version "5.4.1"
