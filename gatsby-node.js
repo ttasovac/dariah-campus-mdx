@@ -193,7 +193,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       featuredImage: File @fileByRelativePath
       isoDate: Date @proxy(from: "date")
       lang: String @defaultValue(value: "en")
-      license: License @link(by: "name") @defaultValue(value: "CCBY 4.0")
+      license: License @defaultValue(value: "CCBY 4.0") @link(by: "name")
       pid: ID
       slug: String @slug(from: "title")
       tags: [Tag!] @link(by: "slug")

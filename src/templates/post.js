@@ -92,6 +92,9 @@ export const query = graphql`
         }
         title
         toc
+        type {
+          icon
+        }
       }
       id
       tableOfContents(maxDepth: 3)
