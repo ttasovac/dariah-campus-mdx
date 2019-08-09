@@ -1,9 +1,9 @@
 import React from 'react'
 
-// import { ReactComponent as BY } from 'images/by.svg'
-// import { ReactComponent as CC } from 'images/cc.svg'
-import by from 'images/by.svg'
-import cc from 'images/cc.svg'
+// import { ReactComponent as BY } from 'assets/by.svg'
+// import { ReactComponent as CC } from 'assets/cc.svg'
+import by from 'assets/by.svg'
+import cc from 'assets/cc.svg'
 
 const CCBY = () => (
   <div style={{ display: 'flex' }}>
