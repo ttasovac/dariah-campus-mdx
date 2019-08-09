@@ -18,3 +18,8 @@
   composes: container;
   max-width: var(--container-large);
 }
+
+.container-huge {
+  composes: container;
+  max-width: var(--container-huge);
+}

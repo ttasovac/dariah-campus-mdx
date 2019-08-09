@@ -14,7 +14,14 @@ const PageTemplate = ({ children, pageContext }) => {
   }
 
   return (
-    <Page>
+    <Page
+      size={
+        String(pageContext.frontmatter.title).toLowerCase() ===
+        'course registry'
+          ? 'huge'
+          : undefined
+      }
+    >
       <Head title={pageContext.frontmatter.title} />
       {children}
     </Page>

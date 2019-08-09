@@ -53,6 +53,7 @@
   --container-small: 80rem;
   --container-medium: 100rem;
   --container-large: 120rem;
+  --container-huge: 160rem;
 }
 
 *,
