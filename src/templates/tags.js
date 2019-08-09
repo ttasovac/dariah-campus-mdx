@@ -6,7 +6,7 @@ import TagCloud from 'components/TagCloud/TagCloud'
 
 import Page from 'elements/Page/Page'
 
-import StudyImage from 'images/hero/study.svg'
+import StudyImage from 'assets/hero/study.svg'
 
 const TagsTemplate = () => (
   <Page>

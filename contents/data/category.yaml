@@ -24,7 +24,7 @@
 
 - name: DARIAH Guides
   slug: dariah-guides
-  image: ../images/dariah-flower.png
+  image: ../images/categories/dariah-guides.png
   description: DARIAH Guides
 
 - name: Events

@@ -2,7 +2,9 @@ import React from 'react'
 
 import IFrame from 'components/IFrame/IFrame'
 
-const Youtube = ({ id, url, relatedVideos = false }) => {
+import styles from './Youtube.module.css'
+
+const Youtube = ({ caption, id, relatedVideos = false, url }) => {
   const aspectRatio = 9 / 16
 
   let embedUrl
@@ -34,7 +36,12 @@ const Youtube = ({ id, url, relatedVideos = false }) => {
     embedUrl.searchParams.set('rel', 0)
   }
 
-  return <IFrame src={embedUrl} aspectRatio={aspectRatio} allowFullscreen />
+  return (
+    <div>
+      <IFrame src={embedUrl} aspectRatio={aspectRatio} allowFullScreen />
+      {caption && <p className={styles.caption}>{caption}</p>}
+    </div>
+  )
 }
 
 const toSeconds = str => {

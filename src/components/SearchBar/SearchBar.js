@@ -5,7 +5,7 @@ import {
   ComboboxPopover,
   ComboboxList,
   ComboboxOption,
-} from '@reach/combobox'
+} from '@stefanprobst/combobox'
 import { Location } from '@reach/router'
 import clsx from 'clsx'
 
@@ -13,7 +13,7 @@ import { createPath } from 'utils/create-path'
 import { getBasePath } from 'utils/get-base-path'
 import { useMatchedPosts } from 'utils/use-matched-posts'
 
-import '@reach/combobox/styles.css'
+import '@stefanprobst/combobox/styles.css'
 import styles from './SearchBar.module.css'
 
 const SearchBar = React.forwardRef(({ className }, ref) => {
@@ -28,11 +28,10 @@ const SearchBar = React.forwardRef(({ className }, ref) => {
       {({ navigate }) => (
         <Combobox
           className={clsx(styles.searchBar, className)}
-          onSelect={item => {
-            const matchedPost = searchResults.find(
-              post => post.frontmatter.title === item
-            )
+          onSelect={(item, meta) => {
+            const matchedPost = searchResults.find(post => post.id === meta)
             if (matchedPost && matchedPost.frontmatter.slug) {
+              setSearchTerm('')
               navigate(createPath(basePath, matchedPost.frontmatter.slug))
             }
           }}
@@ -56,6 +55,7 @@ const SearchBar = React.forwardRef(({ className }, ref) => {
               {searchResults.map(post => (
                 <ComboboxOption
                   key={post.id}
+                  meta={post.id}
                   value={post.frontmatter.title}
                   className={styles.searchResult}
                 />

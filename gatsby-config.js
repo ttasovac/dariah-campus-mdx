@@ -148,29 +148,36 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: 'assets',
+        path: path.resolve('./src/assets'),
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         name: 'data',
-        path: path.resolve('./src/data'),
+        path: path.resolve('./contents/data'),
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'events',
-        path: path.resolve('./src/events'),
+        path: path.resolve('./contents/events'),
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: path.resolve('./src/images'),
+        path: path.resolve('./contents/images'),
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'posts',
-        path: path.resolve('./src/posts'),
+        path: path.resolve('./contents/resources'),
       },
     },
     {
@@ -235,7 +242,7 @@ module.exports = {
         background_color: '#006699',
         theme_color: '#006699',
         display: 'minimal-ui',
-        icon: 'src/images/dariah-flower.svg',
+        icon: 'src/assets/dariah-flower.svg',
       },
     },
     // {
