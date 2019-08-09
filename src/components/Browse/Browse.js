@@ -32,7 +32,7 @@ const Browse = ({ className }) => (
           </Card.Body>
         </Card>
       </Link>
-      <Link to="FIXME:" className={styles.item}>
+      <Link to={getBasePath('events')} className={styles.item}>
         <Card className={styles.card}>
           <Card.Body className={styles.cardBody}>
             <FaUsers color="var(--color-primary)" size="5em" />

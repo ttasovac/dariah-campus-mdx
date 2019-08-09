@@ -72,6 +72,9 @@ export const query = graphql`
           isoDate
           slug
           title
+          type {
+            icon
+          }
         }
         id
       }

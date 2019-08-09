@@ -37,13 +37,6 @@ exports.createSchemaCustomization = ({ actions }) => {
     extend() {
       return {
         type: 'FileInfo',
-        // type: `
-        //   type FileInfo {
-        //     relativeDirectory: String
-        //     relativePath: String
-        //     sourceInstanceName: String
-        //   }
-        // `,
         resolve(source, args, context, info) {
           const parentFileNode = context.nodeModel.getNodeById({
             id: source.parent,
@@ -56,6 +49,7 @@ exports.createSchemaCustomization = ({ actions }) => {
             ? {
                 birthTime: parentFileNode.birthTime,
                 mtime: parentFileNode.mtime,
+                name: parentFileNode.name,
                 relativePath: parentFileNode.relativePath,
                 relativeDirectory: parentFileNode.relativeDirectory,
                 sourceInstanceName: parentFileNode.sourceInstanceName,
@@ -193,7 +187,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       featuredImage: File @fileByRelativePath
       isoDate: Date @proxy(from: "date")
       lang: String @defaultValue(value: "en")
-      license: License @link(by: "name") @defaultValue(value: "CCBY 4.0")
+      license: License @defaultValue(value: "CCBY 4.0") @link(by: "name")
       pid: ID
       slug: String @slug(from: "title")
       tags: [Tag!] @link(by: "slug")
@@ -213,6 +207,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     type FileInfo {
       birthTime: Date
       mtime: Date
+      name: String
       relativeDirectory: String!
       relativePath: String!
       sourceInstanceName: String!
@@ -270,6 +265,22 @@ exports.createPages = async ({ actions, graphql }) => {
           paths {
             name
             path
+          }
+        }
+      }
+      events: allMdx(
+        filter: { fileInfo: { sourceInstanceName: { eq: "events" } } }
+      ) {
+        group(field: fileInfo___relativeDirectory) {
+          directory: fieldValue
+          nodes {
+            id
+            fileInfo {
+              name
+            }
+            frontmatter {
+              title
+            }
           }
         }
       }
@@ -405,6 +416,51 @@ exports.createPages = async ({ actions, graphql }) => {
         limit: POSTS_PER_PAGE,
       },
     })
+  })
+
+  // An alternative approach to grouping events in the gatsby-node query
+  // would have been to just query for all relativeDirectory in
+  // sourceInstanceName "events", and pass that to the event template,
+  // which would query itself for allMdx files in that directory
+  const events = data.events.group
+  const eventsPreviews = {}
+
+  const eventBasePath = paths.find(route => route.name === 'event').path
+  events.forEach(event => {
+    const { directory, nodes } = event
+
+    const index = nodes.find(node => node.fileInfo.name === 'index')
+    const about = nodes.find(node => node.fileInfo.name === 'about')
+    const sessions = nodes.filter(node =>
+      node.fileInfo.name.startsWith('session')
+    )
+
+    // We could also have queried separately for allMdx in
+    // sourceInstanceName events with fileInfo.name eq index,
+    // instead of passing everything through context
+    eventsPreviews[directory] = {
+      title: index.frontmatter.title,
+    }
+
+    actions.createPage({
+      path: createPath(eventBasePath, directory),
+      component: path.resolve('./src/templates/event.js'),
+      context: {
+        indexId: index.id,
+        aboutId: about.id,
+        sessionIds: sessions.map(node => node.id),
+      },
+    })
+  })
+
+  // TODO: paginate events preview page
+  const eventsPreviewsBasePath = paths.find(route => route.name === 'events')
+    .path
+  actions.createPage({
+    path: eventsPreviewsBasePath,
+    // path: createPath(eventsPreviewsBasePath, page ? page + 1 : null),
+    component: path.resolve(`./src/templates/events.js`),
+    context: eventsPreviews,
   })
 }
 

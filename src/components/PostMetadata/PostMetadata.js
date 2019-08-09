@@ -11,12 +11,12 @@ import styles from './PostMetadata.module.css'
 
 const getNames = (entities = [], basePath) =>
   entities.map((entity, i) => (
-    <>
+    <React.Fragment key={entity.slug}>
       {i ? ', ' : null}
       <Link key={entity.slug} to={createPath(basePath, entity.slug)}>
         {entity.name}
       </Link>
-    </>
+    </React.Fragment>
   ))
 
 const PostMetadata = ({ className, metadata }) => (

@@ -1,5 +1,5 @@
 exports.slugify = str =>
-  str
+  String(str)
     .toLowerCase()
     .replace(/[^\w/]+/g, '-')
     .replace(/^-|-$/g, '')

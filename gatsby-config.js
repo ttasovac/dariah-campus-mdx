@@ -58,6 +58,18 @@ module.exports = {
         top: true,
       },
       {
+        displayName: 'Event',
+        name: 'event',
+        path: '/event',
+        top: false,
+      },
+      {
+        displayName: 'Events',
+        name: 'events',
+        path: '/events',
+        top: false,
+      },
+      {
         displayName: 'Home',
         name: 'home',
         path: '/',
@@ -143,6 +155,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: 'events',
+        path: path.resolve('./src/events'),
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         name: 'images',
         path: path.resolve('./src/images'),
       },
@@ -161,8 +180,9 @@ module.exports = {
         defaultLayouts: {
           data: path.resolve('./src/templates/component.js'),
           default: path.resolve('./src/templates/page.js'),
-          // pages: '',
-          // posts: '',
+          // events: path.resolve('./src/templates/events.js'),
+          // pages: path.resolve(''),
+          // posts: path.resolve(''),
         },
         gatsbyRemarkPlugins: [
           {
