@@ -1147,18 +1147,6 @@
   resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.2.0.tgz#97f9e48fe736aa5c6f4f32cf73c1f19d005f8550"
   integrity sha512-lVK/svL2HuQdp7jgvlrLkFsUx50Az9chAhxpiPwBqcS83I2pVWvXp98FOcSCCJCV++l115QmzHhFd+ycw1zLBg==
 
-"@reach/combobox@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@reach/combobox/-/combobox-0.1.1.tgz#1853042c384993f0e22f426d1d9a55857a7d2325"
-  integrity sha512-2bS4hVWVurmwVp6KWP2bRWm4tenmaVy+WkvkRAA5T+0Lp0vMrld/hxLuh7tUXqLmLIf07vOYLA+lHJwcOprMjQ==
-  dependencies:
-    "@reach/auto-id" "0.2.0"
-    "@reach/popover" "^0.1.0"
-    "@reach/portal" "^0.2.1"
-    "@reach/utils" "^0.2.3"
-    escape-regexp "0.0.1"
-    highlight-words-core "1.2.0"
-
 "@reach/component-component@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@reach/component-component/-/component-component-0.1.3.tgz#5d156319572dc38995b246f81878bc2577c517e5"
@@ -1214,6 +1202,18 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
   integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
+
+"@stefanprobst/combobox@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@stefanprobst/combobox/-/combobox-0.1.1.tgz#fa1df6823deced9582d75fcf59788ff1eebec395"
+  integrity sha512-sx9yogWgI4u+CY3SbhbK7sFRtCTraXLx6yG2gFHhfpkcS9Mhn0vXICwRTsjYTmhrj8A/2xXCkGBgm0by5+PXkA==
+  dependencies:
+    "@reach/auto-id" "0.2.0"
+    "@reach/popover" "^0.1.0"
+    "@reach/portal" "^0.2.1"
+    "@reach/utils" "^0.2.3"
+    escape-regexp "0.0.1"
+    highlight-words-core "1.2.0"
 
 "@stefanprobst/lokijs@^1.5.6-b":
   version "1.5.6-b"
